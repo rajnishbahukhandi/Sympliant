@@ -1,2 +1,2 @@
 # Sympliant
-Sympliant Healcare Admin script in python.
+Sympliant Healthcare Admin script in python.
