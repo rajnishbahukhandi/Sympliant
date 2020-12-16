@@ -1,6 +1,8 @@
 from PomAdmin.Locators.locators import locator
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
+from urlmatch import urlmatch
+import time
 
 class DEndoscope():
     def __init__(self, driver):
@@ -15,6 +17,11 @@ class DEndoscope():
         self.DEndoscope_ApproxUsage_id = locator.DEndoscope_ApproxUsage_id
         self.DEndoscope_MaxUsage_id = locator.DEndoscope_MaxUsage_id
         self.DEndoscope_ServiceDate_xpath = locator.DEndoscope_ServiceDate_xpath
+        self.DEndoscope_ServiceDateNextButton_xpath = locator.DEndoscope_ServiceDateNextButton_xpath
+        self.DEndoscope_ServiceDateSelect_xpath = locator.DEndoscope_ServiceDateSelect_xpath
+        self.DEndoscope_Active_xpath = locator.DEndoscope_Active_xpath
+        self.DEndoscope_Submit_Button_xpath = locator.DEndoscope_Submit_Button_xpath
+        self.DEndoscope_PurchaseDateAlertMessage_xpath = locator.DEndoscope_PurchaseDateAlertMessage_xpath
 
     def DEndoscope_selection(self):
         self.driver.find_element_by_xpath(self.DEndoscope_xpath).click()
@@ -51,5 +58,23 @@ class DEndoscope():
 
     def DEndoscope_ServiceDate(self):
         self.driver.find_element_by_xpath(self.DEndoscope_ServiceDate_xpath).click()
+        time.sleep(2)
+        self.driver.find_element_by_xpath(self.DEndoscope_ServiceDateNextButton_xpath).click()
+        self.driver.find_element_by_xpath(self.DEndoscope_ServiceDateSelect_xpath).click()
+
+    def DEndoscope_Active(self):
+        self.driver.find_element_by_xpath(self.DEndoscope_Active_xpath).click()
+
+    def DEndoscope_Submit_Button(self, driver):
+        self.driver.find_element_by_xpath(self.DEndoscope_Submit_Button_xpath).click()
+        get_url = driver.current_url
+        print(get_url)
+        match_pattern = "https://dev-admin.sympliant.com/department-endoscopes/create"
+        if urlmatch(match_pattern, get_url):
+            DEndoscopePurchaseDate_message = self.driver.find_element_by_xpath(self.DEndoscope_PurchaseDateAlertMessage_xpath).text
+            assert DEndoscopePurchaseDate_message == "Oops! The purchased at field is required."
+            print(DEndoscopePurchaseDate_message)
+        else:
+            print("pass")
 
 

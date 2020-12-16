@@ -4,6 +4,7 @@ class locator():
     eMailAddress_textbox_id = 'email'
     password_textbox_id = "password"
     login_button_xpath = "/html/body/div/div[2]/div[3]/div/div/form/div[4]/div/button"
+    login_InvalidEmailMessage_xpath = '//*[@class="invalid-feedback"]'
 
     # Profile objects
     welcome_Profile_link_id = "navbarDropdown"
@@ -64,4 +65,8 @@ class locator():
     DEndoscope_ApproxUsage_id = 'approx_usage'
     DEndoscope_MaxUsage_id = 'max_usage'
     DEndoscope_ServiceDate_xpath = '//*[@name="service_initiated_at"]'
-
+    DEndoscope_ServiceDateNextButton_xpath = '//*[@class="next"]'
+    DEndoscope_ServiceDateSelect_xpath = '//*[@id="collapse-main"]/main/div/div/div/div/div[2]/form/div[8]/div/div/div/div[2]/div/span[26]'
+    DEndoscope_Active_xpath = '//*[@id="active"]'
+    DEndoscope_Submit_Button_xpath = '//*[@type="submit"]'
+    DEndoscope_PurchaseDateAlertMessage_xpath = '//*[@class="alert alert-danger"]'
