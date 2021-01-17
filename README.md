@@ -22,8 +22,11 @@ driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
 
 Take screenshots used the PyAutoGUI. 
+
 pip3 install pyautogui
 
 PyAutoGUI lets your Python scripts control the mouse and keyboard to automate interactions with other applications. The API is designed to be as simple. PyAutoGUI works on Windows, macOS, and Linux, and runs on Python 2 and 3.
+
 Method written in the TakeScreenshot/CaptureScreen.py
+
 All the screenshot stored in TakeScreenshot/UpdateScreenshots
