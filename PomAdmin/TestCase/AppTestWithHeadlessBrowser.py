@@ -2,9 +2,10 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from PomAdmin.Module.LoginModule import LoginPage
 from PomAdmin.CredentialsFile.Variable import var
-from PomAdmin.TakeScreenshot.CaptureScreen import capture
 import unittest
 import time
+
+# Written Script With Headless Browser
 
 class LoginTestCase(unittest.TestCase):
     # by default, python unittest executes testcases in alphabetical order.
@@ -13,7 +14,13 @@ class LoginTestCase(unittest.TestCase):
     def setUpClass(cls):
         # setUpClass method will be executed before running any test method.
         # setUpClass method gets executed once per test class.
-        cls.driver = webdriver.Chrome(ChromeDriverManager().install())
+        # Headless browser use in script
+        # Headless chrome is that your JavaScript test will be executed in the same environment as the user of your
+        # site. Headless chrome give you a real browser context without the memory overhead running a full version of
+        # Chrome.
+        options = webdriver.ChromeOptions()
+        options.headless = True
+        cls.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
 
@@ -25,7 +32,6 @@ class LoginTestCase(unittest.TestCase):
         loginInvalidEmail.enter_username(var.invalidUsername)
         loginInvalidEmail.enter_password(var.password)
         loginInvalidEmail.click_login(driver)
-        capture.captureInvalidEMailAddress()
 
     def test_loginOfInvalidPassword(self):
         driver = self.driver
@@ -35,7 +41,6 @@ class LoginTestCase(unittest.TestCase):
         loginInvalidPassword.enter_username(var.username)
         loginInvalidPassword.enter_password(var.invalidPassword)
         loginInvalidPassword.click_login(driver)
-        capture.captureInvalidPassword()
 
     def test_loginOfNullCredentials(self):
         driver = self.driver
@@ -43,7 +48,6 @@ class LoginTestCase(unittest.TestCase):
         time.sleep(2)
         loginNullCredentials = LoginPage(driver)
         loginNullCredentials.click_loginalert(driver)
-        capture.captureNullCredentials()
 
     def test_loginOfValidCredentials(self):
         driver = self.driver
@@ -53,7 +57,6 @@ class LoginTestCase(unittest.TestCase):
         loginValidCredentials.enter_username(var.username)
         loginValidCredentials.enter_password(var.password)
         loginValidCredentials.click_login(driver)
-        capture.captureValidCredentials()
 
     time.sleep(2)
 

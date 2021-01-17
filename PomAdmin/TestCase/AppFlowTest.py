@@ -10,7 +10,6 @@ from PomAdmin.Module.DEndoscopeModule import DEndoscope
 from PomAdmin.CredentialsFile.Variable import var
 import unittest
 import time
-# import HtmlTestRunner
 
 class AppTest(unittest.TestCase):
 
@@ -118,8 +117,6 @@ class AppTest(unittest.TestCase):
 
 
 
-# if __name__ == '__main__':
-#     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output="/Users/ray.rajnish/PycharmProjects/SympliantAdmin/HTMLReportsGenerates"))
 
 
 
